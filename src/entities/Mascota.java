@@ -11,8 +11,8 @@ public class Mascota {
     private LocalDate fechaNacimiento; 
     private Boolean eliminado;
     // Atributos de RELACIÓN
-    private Duenio duenio; // Relación 1-a-Muchos (lado "Muchos")
-    private Microchip microchip; // Relación 1-a-1 (lado "A")
+    private Duenio duenio; // Relación 1-a-Muchos 
+    private Microchip microchip; // Relación 1-a-1 
 
     //Constructor vacio
     public Mascota() {

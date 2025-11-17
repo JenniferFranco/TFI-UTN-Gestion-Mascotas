@@ -5,46 +5,66 @@ import java.util.List;
 import java.sql.SQLException;
 
 /**
- * Interfaz genérica para todas las operaciones DAO.
- * <T> será reemplazado por Duenio, Mascota, etc.
+ * Interfaz genérica (Contrato Base) para todos los Data Access Objects (DAO).
+ * ROL: Define el **contrato base** para la capa de acceso a datos.
+ * 
+ * @param <T> será reemplazado por el tipo de Entidad (Duenio, Mascota, Microchip)
  */
 public interface GenericDAO <T> {
-    // 🧠 NOTA EQUIPO: ¿Por qué no hay un 'crear(T t)' o 'actualizar(T t)' simples?
-    // Porque el TFI nos OBLIGA a que toda escritura (C-U-D) pase por 
-    // una transacción controlada por el Service. 
-    // Al tener solo métodos de escritura que reciben 'Connection conn', nos 
-    // aseguramos de que nadie en el DAO pueda hacer un 'commit' por su cuenta.
+   // --- MÉTODOS TRANSACCIONALES (C-U-D) ---
+    // (Usados por el Service para controlar el commit/rollback)
 
-    // --- MÉTODOS TRANSACCIONALES (para ser usados SÓLO por el Service) ---
+    /**
+     * Inserta una nueva entidad en la base de datos.
+     * Es transaccional: recibe una conexión externa del Service.
+     *
+     * @param t El objeto a crear (ej. un Duenio).
+     * @param conn La conexión transaccional (manejada por el Service).
+     * @return El objeto 't' actualizado con el ID que le asignó la BD.
+     * @throws SQLException Si hay un error de SQL (ej. DNI duplicado).
+     */
+    T crear(T t, Connection conn) throws SQLException;
     
     /**
-     * 🔑 CAMBIO 1: Se llama 'crear' (como pide el TFI) y DEVUELVE T.
-     * ¿Por qué devuelve T? Porque necesitamos que nos devuelva el objeto
-     * con el nuevo ID que generó la base de datos (AUTO_INCREMENT).
-     * Esto es VITAL para la lógica de Mascota -> Microchip.
-     */;
-    T crearTx(T t, Connection conn) throws SQLException;
-    /**
-     * 🔑 CAMBIO 2: 'actualizar' ahora DEBE recibir la Connection.
-     * Es una escritura (Update) y el TFI obliga a que sea transaccional.
+     * Actualiza una entidad existente en la base de datos.
+     * Es transaccional: recibe una conexión externa del Service.
+     *
+     * @param t El objeto con los datos a actualizar.
+     * @param conn La conexión transaccional (manejada por el Service).
+     * @throws SQLException Si hay un error de SQL.
      */
     void actualizar(T t, Connection conn) throws SQLException;
+    
     /**
-     * 🔑 CAMBIO 3: 'eliminar' también DEBE recibir la Connection.
-     * Nuestra baja lógica es un (Update), así que también es transaccional.
-     * * ⚠️ ¡OJO! Usamos Long para el ID, porque en nuestra BD es BIGINT (no int).
+     * Realiza una baja lógica de una entidad por su ID.
+     * (Ejecuta: UPDATE tabla SET eliminado = true WHERE id = ?).
+     * Es transaccional: recibe una conexión externa del Service.
+     *
+     * @param id El ID (Long/BIGINT) de la entidad a eliminar.
+     * @param conn La conexión transaccional (manejada por el Service).
+     * @throws SQLException Si hay un error de SQL.
      */
     void eliminar(Long id, Connection conn) throws SQLException;
     
-    // --- MÉTODOS DE LECTURA
+    // --- MÉTODOS DE LECTURA --- 
+    // (métodos NO son transaccionales, manejan su propia conexión)
+
     /**
-     * ✅ CAMBIO 4: 'getById' se renombra a 'leerPorId' (nomenclatura del TFI).
-     * ⚠️ ¡OJO! También usa Long para el ID, para coincidir con BIGINT.
+     * Lee una entidad por su ID (y que no esté eliminada).
+     * Este método maneja su propia conexión (la pide al Pool y la cierra).
+     *
+     * @param id El ID (Long/BIGINT) de la entidad a buscar.
+     * @return El objeto <T> encontrado, o null si no existe o fue eliminado.
+     * @throws SQLException Si hay un error de SQL.
      */
     T leerPorId(Long id) throws SQLException;
+    
     /**
-     * ✅ CAMBIO 5: 'getAll' se renombra a 'leerTodos' (nomenclatura del TFI).
-     * (Internamente, este método solo traerá los que tengan eliminado = false).
+     * Lee todas las entidades activas (eliminado = false) de una tabla.
+     * Este método maneja su propia conexión (la pide al Pool y la cierra).
+     *
+     * @return Una Lista de objetos <T> (puede estar vacía).
+     * @throws SQLException Si hay un error de SQL.
      */
     List<T> leerTodos() throws SQLException;
     

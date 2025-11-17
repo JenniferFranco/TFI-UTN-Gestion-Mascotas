@@ -10,6 +10,7 @@ public class Duenio {
     private String nombre;
     private String apellido;
     private String email;
+    private String telefono;
     private String direccion;
     private Boolean eliminado;
      // Atributos de RELACIÓN
@@ -20,12 +21,13 @@ public class Duenio {
     }
     
     //Constructor con parametros
-    public Duenio(Long id, String dni, String nombre, String apellido, String email, String direccion, Boolean eliminado, ArrayList<Mascota> mascotas) {
+    public Duenio(Long id, String dni, String nombre, String apellido, String email, String telefono, String direccion, Boolean eliminado, ArrayList<Mascota> mascotas) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.telefono = telefono;
         this.direccion = direccion;
         this.eliminado = eliminado;
         this.mascotas = mascotas;
@@ -70,6 +72,14 @@ public class Duenio {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getDireccion() {

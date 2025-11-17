@@ -84,8 +84,5 @@ public class Microchip {
                 ", fechaImplantacion=" + fechaImplantacion + 
                 ", veterinaria=" + veterinaria + 
                 ", observaciones=" + observaciones + '}';
-        
-    }
-    
-    
+    }  
 }
