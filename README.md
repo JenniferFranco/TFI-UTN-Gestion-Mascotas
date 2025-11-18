@@ -47,15 +47,18 @@ El sistema modela la relación entre tres entidades principales:
 
 ### 1. Crear la Base de Datos
 
-- Creamos la base de datos si no existe
+Ejecuta el siguiente script en tu gestor de base de datos (DBeaver, MySQL Workbench) para crear la estructura completa:
+
+```sql
+-- Creamos la base de datos si no existe
 CREATE DATABASE IF NOT EXISTS gestion_mascota;
 USE gestion_mascota;
 
--- BLOQUE DE IDEMPOTENCIA
+-- BLOQUE DE IDEMPOTENCIA (Borra tablas si existen para evitar errores)
 SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS mascota;
-DROP TABLE IF EXISTS duenio;
-DROP TABLE IF EXISTS microchip;
+DROP TABLE IF EXISTS mascotas;
+DROP TABLE IF EXISTS duenios;
+DROP TABLE IF EXISTS microchips;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- DUENIOS (Tabla independiente)
@@ -73,8 +76,7 @@ CREATE TABLE duenios (
     CONSTRAINT chk_telefono CHECK (LENGTH(telefono) >= 7) 
 );
 
--- MASCOTA (Depende de Duenio)
--- Esta es 'A' en la relación A->B
+-- MASCOTA (Depende de Duenio) - Relación A->B
 CREATE TABLE mascotas (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     eliminado BOOLEAN NOT NULL DEFAULT FALSE,
@@ -92,8 +94,7 @@ CREATE TABLE mascotas (
     CONSTRAINT chk_mascota_nombre CHECK (TRIM(nombre) <> '')
 );
 
--- MICROCHIP (Depende de Mascota)
--- Esta es 'B' en la relación A->B
+-- MICROCHIP (Depende de Mascota) - Relación A->B
 CREATE TABLE microchips (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     eliminado BOOLEAN NOT NULL DEFAULT FALSE,
@@ -164,10 +165,12 @@ Para iniciar la aplicación, ejecuta el archivo principal desde tu IDE:
 
 ## 👥 Integrantes del Equipo
 
+El desarrollo de este Trabajo Final Integrador fue realizado en conjunto, compartiendo responsabilidades en todas las etapas del ciclo de vida del software (Análisis, Diseño, Implementación, Base de Datos y Testing).
+
 | Integrante | Rol |
 | :--- | :--- |
-| **Jennifer Franco** | Desarrollo – Diseño UML – Informe |
-| **Jonathan Franco** | Desarrollo – Pruebas – Base de Datos |
+| **Jennifer Franco** | Desarrollo Full Stack (Java/MySQL) – Arquitectura – Documentación – QA |
+| **Jonathan Franco** | Desarrollo Full Stack (Java/MySQL) – Arquitectura – Documentación – QA |
 
 ---
 **Ciclo Lectivo: 2025** | **Materia: Programación 2 – UTN**
