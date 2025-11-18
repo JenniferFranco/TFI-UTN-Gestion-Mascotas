@@ -110,6 +110,7 @@ CREATE TABLE microchips (
     -- RESTRICCIONES
     CONSTRAINT chk_microchip_codigo CHECK (TRIM(codigo) <> '')
 );
+```
     
 ### 2. Configurar la Conexión a MySQL
 
