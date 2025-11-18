@@ -122,45 +122,36 @@ config.setUsername("TU_USUARIO");
 config.setPassword("TU_PASSWORD");
 
 ##🏗️ Estructura del Proyecto
-src/
- ├── config/
- │     └── DatabaseConnectionPool.java
- ├── entities/
- │     ├── Duenio.java
- │     ├── Mascota.java
- │     └── Microchip.java
- ├── dao/
- │     ├── GenericDAO.java
- │     ├── MascotaDAO.java
- │     ├── MicrochipDAO.java
- │     ├── DuenioDAO.java
- │     ├── impl/
- │     │     ├── MascotaDaoImpl.java
- │     │     ├── MicrochipDaoImpl.java
- │     │     └── DuenioDaoImpl.java
- ├── service/
- │     ├── MascotaService.java
- │     ├── MicrochipService.java
- │     ├── DuenioService.java
- │     └── impl/
- └── main/
-       ├── Main.java
-       ├── MenuHandler.java
-       └── MenuDisplay.java
+* **`src/config/`**:
+    * `DatabaseConnectionPool.java`: Configuración de la base de datos (HikariCP).
+* **`src/entities/`**:
+    * `Duenio.java`, `Mascota.java`, `Microchip.java`: Clases del modelo de datos.
+* **`src/dao/`**:
+    * `GenericDAO.java`: Interfaz base.
+    * `DuenioDAO.java`, `MascotaDAO.java`, `MicrochipDAO.java`: Interfaces específicas.
+    * `impl/`: Contiene las implementaciones (`DuenioDaoImpl`, etc.).
+* **`src/service/`**:
+    * `DuenioService.java`, `MascotaService.java`, `MicrochipService.java`: Interfaces de negocio.
+    * `impl/`: Contiene la lógica de negocio y transacciones (`MascotaServiceImpl`, etc.).
+* **`src/main/`**:
+    * `Main.java`: Punto de entrada.
+    * `MenuHandler.java`: Controlador de la consola.
+    * `MenuDisplay.java`: Vista de la consola.
 ---
        
 ## ▶️ Ejecución del Programa
 
-Ejecutar:
-src/main/Main.java
+Para iniciar la aplicación, ejecuta el archivo principal desde tu IDE:
 
-Funciones disponibles:
-* CRUD de Dueños
-* CRUD de Mascotas
-* CRUD de Microchips
-* Creación transaccional de Mascota + Microchip
-* Búsquedas y listados
-* Baja lógica (Soft Delete)
+`src/main/Main.java`
+
+### Funciones disponibles:
+* ✅ **CRUD de Dueños** (Crear, Leer, Actualizar, Eliminar)
+* ✅ **CRUD de Mascotas**
+* ✅ **CRUD de Microchips** (gestionado internamente)
+* ✅ **Creación Transaccional:** Mascota + Microchip (Atomicidad garantizada)
+* ✅ **Búsquedas y Listados:** Por ID, DNI, Apellido, etc.
+* ✅ **Baja Lógica:** Implementación de Soft Delete.
 
 ---
 
@@ -171,14 +162,13 @@ Funciones disponibles:
 * Consultas SQL en DBeaver para validar registros
 * Verificación del soft delete
 
----
-
 ## 👥 Integrantes del Equipo
-Integrante	       Rol 
-Jennifer Franco	   Desarrollo – Pruebas – Base de Datos
-Jonathan Franco	   Desarrollo – Diseño UML – Informe
 
-Ciclo Lectivo: 2025
-Materia: Programación 2 – UTN
+| Integrante | Rol |
+| :--- | :--- |
+| **Jennifer Franco** | Desarrollo – Diseño UML – Informe |
+| **Jonathan Franco** | Desarrollo – Pruebas – Base de Datos |
 
+---
+**Ciclo Lectivo: 2025** | **Materia: Programación 2 – UTN**
 Y reemplazar:    Mascota "1" --> "1" Microchip : identifica
