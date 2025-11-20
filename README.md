@@ -166,10 +166,9 @@ Para iniciar la aplicación, ejecuta el archivo principal desde tu IDE:
 
 ---
 
-##  Video Demostrativo
+## ▶️ Video Demostrativo
 
 Link del video en youtube: https://youtu.be/TCYOXfE_YZk
-
 
 ---
 
