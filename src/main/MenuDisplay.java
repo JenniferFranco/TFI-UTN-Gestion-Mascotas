@@ -48,9 +48,8 @@ public class MenuDisplay {
      * @param mensaje El detalle del error ocurrido.
      */
     public void mostrarError(String mensaje) {
-        System.err.println("\n/!\\ --- ERROR --- /!\\");
+        System.err.println("\n/--- ¡ERROR! --- ");
         System.err.println(mensaje);
-        System.err.println("/!\\---------------/!\\ \n");
     }
 
    /**
