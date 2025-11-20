@@ -164,6 +164,14 @@ Para iniciar la aplicación, ejecuta el archivo principal desde tu IDE:
 * Consultas SQL en DBeaver para validar registros
 * Verificación del soft delete
 
+---
+
+## ▶️ Video Demostrativo
+
+Link del video en youtube: https://youtu.be/TCYOXfE_YZk
+
+---
+
 ## 👥 Integrantes del Equipo
 
 El desarrollo de este Trabajo Final Integrador fue realizado en conjunto, compartiendo responsabilidades en todas las etapas del ciclo de vida del software (Análisis, Diseño, Implementación, Base de Datos y Testing).
@@ -175,4 +183,6 @@ El desarrollo de este Trabajo Final Integrador fue realizado en conjunto, compar
 
 ---
 **Ciclo Lectivo: 2025** | **Materia: Programación 2 – UTN**
+
+
 
