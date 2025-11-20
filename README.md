@@ -175,4 +175,4 @@ El desarrollo de este Trabajo Final Integrador fue realizado en conjunto, compar
 
 ---
 **Ciclo Lectivo: 2025** | **Materia: Programación 2 – UTN**
-Y reemplazar:    Mascota "1" --> "1" Microchip : identifica
+
